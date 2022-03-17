@@ -1,15 +1,18 @@
 Package: catalogr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: CatalogR, catalog your code for easy searching
 Version: 0.1.0
-Author: Who wrote it
+Author: Akash Sadashivapeth
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Catalog a set of files in a directory with additional metadata and enable easy searching through an API or a shiny app.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
+    spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 RoxygenNote: 7.1.1
+Language: en-US
+Imports: 
+    glue

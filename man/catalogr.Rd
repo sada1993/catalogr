@@ -2,15 +2,24 @@
 % Please edit documentation in R/catalogr.R
 \name{catalogr}
 \alias{catalogr}
-\title{}
+\title{Catalog a directory}
 \usage{
-catalogr(dir = getwd(), fileformat = list(.R = "#@"))
+catalogr(dir = getwd(), fileformat = list(.R = "#>"), recursive = TRUE)
 }
 \arguments{
 \item{dir}{current working directory}
 
 \item{fileformat}{list with the keys as file type and value with the token}
+
+\item{recursive}{recursively follow all directories starting from the current directory}
 }
 \description{
-
+Catalog a directory of files
+}
+\examples{
+# Catalog all .R files in the current working directory
+catalogr()
+# Catalog R and SQL files.
+# Catalogs the metadata available
+catalogr(fileformat = list(".R" = "#>", ".sql" = "-->"))
 }
