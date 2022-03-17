@@ -3,7 +3,7 @@ Type: Package
 Title: CatalogR, catalog your code for easy searching
 Version: 0.1.0
 Author: Akash Sadashivapeth
-Maintainer: The package maintainer <yourself@somewhere.net>
+Maintainer: Akash Sadashivapeth <github.com/sada1993>
 Description: Catalog a set of files in a directory with additional metadata and enable easy searching through an API or a shiny app.
 License: MIT + file LICENSE
 Encoding: UTF-8
