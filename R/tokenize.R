@@ -1,57 +1,72 @@
-tokenize <- function(file_lines, token){
+tokenize <- function(file_lines, token) {
   parsed_lines <- list()
-  for(i in seq_along(file_lines)){
+  for (i in seq_along(file_lines)) {
     line <- remove_starting_spaces(file_lines[i])
-    if(is_line_format_correct(string, token)){
+    if (does_token_exist(line, token)) {
+      if (is_line_format_correct(line, token)) {
+        label <- remove_ending_spaces(parse_label(line, token))
+        value <- strsplit(parse_value(line, token), ",")[[1]]
+        value <- sapply(value, remove_starting_spaces, USE.NAMES = FALSE, simplify = TRUE)
+        value <- sapply(value, remove_ending_spaces, USE.NAMES = FALSE, simplify = TRUE)
 
-    }else{
-      warning(glue::glue("Expression must be in the form {token} label:[value]"))
-      next()
+        parsed_lines[[i]] <- list(label = label, value = value)
+      } else {
+        warning(glue::glue("Expression must be in the form {token} label:[value]"))
+        next()
+      }
     }
   }
+  return(parsed_lines)
 }
 
 
 # Parse components of line -----
-parse_label <- function(string, token){
-  label <- gsub(glue::glue("^{token}(.*): *\\[.+\\]$"),"\\1", string)
+parse_label <- function(string, token) {
+  label <- gsub(glue::glue("^{token}(.*): *\\[.*\\].*$"), "\\1", string)
   remove_starting_spaces(label)
 }
 
-parse_value <- function(string, token){
-  label <- gsub(glue::glue("^{token}(.*): *\\[.+\\]$"),"\\1", string)
+parse_value <- function(string, token) {
+  label <- gsub(glue::glue("^{token}.*: *\\[(.*)\\].*$"), "\\1", string)
   remove_starting_spaces(label)
 }
 
 
 
 # Format checks ------
-is_line_format_correct <- function(string, token){
+does_token_exist <- function(string, token) {
+  grepl(glue::glue("^{token}.*$"), string)
+}
 
-  one_exists <- function(char, string){
-    if(char %in% c(".", "+", "*", "?", "^", "$", "(", ")", "[", "]", "{", "}", "|", "\\")){
+is_line_format_correct <- function(string, token) {
+  one_exists <- function(char, string) {
+    if (char %in% c(".", "+", "*", "?", "^", "$", "(", ")", "[", "]", "{", "}", "|", "\\")) {
       # Escame regular expression special characters
       char <- glue::glue("\\{char}")
     }
     char_idx <- gregexpr(char, string)[[1]]
-    if(-1 %in% char_idx){
+    if (-1 %in% char_idx) {
       return(FALSE)
-    }else if(length(char_idx) != 1){
+    } else if (length(char_idx) != 1) {
       return(FALSE)
-    }else{
+    } else {
       return(TRUE)
     }
   }
 
-  if(one_exists(":", string) &&
-     one_exists("[", string) &&
-     one_exists("]", string)){
-    return(grepl(glue::glue("^{token}.*: *\\[.+\\]$"), string))
-  }else{
+  if (one_exists(":", string) &&
+    one_exists("[", string) &&
+    one_exists("]", string)) {
+    return(grepl(glue::glue("^{token}.*: *\\[.*\\].*$"), string))
+  } else {
     return(FALSE)
   }
 }
 # Utility Functions --------
-remove_starting_spaces <- function(string){
-  gsub("^ *","", string)
+remove_starting_spaces <- function(string) {
+  gsub("^ *", "", string)
+}
+
+remove_ending_spaces <- function(string) {
+  gsub(" *$", "", string)
 }
