@@ -40,5 +40,13 @@ test_that("tokenize", {
     tokenize(c("#>   authors   :    [   test  ]   ", "#> my_label: [  test1  ,  test2   ]", "#This is not a token"), "#>"),
     list(list(label = "authors", value = "test"), list(label = "my_label", value = c("test1", "test2")))
   )
-  expect_warning(tokenize("#> authors ","#>"), "Expression must be in the form #> label:\\[value\\]")
+  expect_warning(tokenize("#> authors ", "#>"), "Expression must be in the form #> label:\\[value\\]")
+  expect_equal(
+    tokenize(c(
+      "# This is a comment",
+      "#' This is a Roxygen Comment",
+      "#> authors: [akash, test]"
+    ), "#>"),
+    list(list(label = "authors", value = c("akash", "test")))
+  )
 })

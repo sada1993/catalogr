@@ -1,7 +1,8 @@
 tokenize <- function(file_lines, token) {
   parsed_lines <- list()
-  for (i in seq_along(file_lines)) {
-    line <- remove_starting_spaces(file_lines[i])
+  counter <- 1
+  for (line in file_lines) {
+    line <- remove_starting_spaces(line)
     if (does_token_exist(line, token)) {
       if (is_line_format_correct(line, token)) {
         label <- remove_ending_spaces(parse_label(line, token))
@@ -9,7 +10,8 @@ tokenize <- function(file_lines, token) {
         value <- sapply(value, remove_starting_spaces, USE.NAMES = FALSE, simplify = TRUE)
         value <- sapply(value, remove_ending_spaces, USE.NAMES = FALSE, simplify = TRUE)
 
-        parsed_lines[[i]] <- list(label = label, value = value)
+        parsed_lines[[counter]] <- list(label = label, value = value)
+        counter <- counter + 1
       } else {
         warning(glue::glue("Expression must be in the form {token} label:[value]"))
         next()
