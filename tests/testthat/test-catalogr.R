@@ -1,3 +1,18 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+#> author: [akash]
+test_that("catalogr", {
+  expect_equal(
+    catalogr("testdir", write_yaml = FALSE),
+    list(
+      `testdir/example_catalogr.R` =
+        list(
+          list(
+            label = "Author", value = "akash"
+          ),
+          list(
+            label = "Description",
+            value = "This is a test file"
+          )
+        )
+    )
+  )
 })

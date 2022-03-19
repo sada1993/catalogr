@@ -1,3 +1,3 @@
-read_files <- function(filepath){
+read_files <- function(filepath) {
   readLines(filepath)
 }

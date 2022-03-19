@@ -4,12 +4,23 @@
 \alias{catalogr}
 \title{Catalog a directory}
 \usage{
-catalogr(dir = getwd(), fileformat = list(.R = "#>"), recursive = TRUE)
+catalogr(
+  dir = getwd(),
+  fileformat = list(.R = "#>", .sql = "-->"),
+  write_yaml = TRUE,
+  yaml_filepath = file.path(getwd(), "catalogr.yaml"),
+  recursive = TRUE
+)
 }
 \arguments{
 \item{dir}{current working directory}
 
-\item{fileformat}{list with the keys as file type and value with the token}
+\item{fileformat}{list with the keys as file type and a value with the comment token.
+These are the only files read by the package. By default R and SQL files are supported.}
+
+\item{write_yaml}{boolen value, if FALSE then the function returns a list object}
+
+\item{yaml_filepath}{if `write_yaml` is TRUE, this specifies the filepath and filename to store the file in.}
 
 \item{recursive}{recursively follow all directories starting from the current directory}
 }
