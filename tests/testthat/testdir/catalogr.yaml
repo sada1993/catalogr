@@ -1,0 +1,14 @@
+testdir/example_catalogr.R:
+- label: Author
+  value: akash
+- label: Description
+  value: This is a test file
+testdir/example_load_data.R:
+- label: authors
+  value:
+  - '"akash"'
+  - '"Sam"'
+- label: database
+  value:
+  - '"staging"'
+  - '"live"'

@@ -1,7 +1,6 @@
-#> author: [akash]
-test_that("catalogr", {
+test_that("", {
   expect_equal(
-    catalogr("testdir", write_yaml = FALSE),
+    read_catalog("testdir/catalogr.yaml"),
     list(`testdir/example_catalogr.R` = list(list(
       label = "Author", value = "akash"
     ), list(
