@@ -24,7 +24,7 @@ catalogr <- function(dir = getwd(), fileformat = list(`.R` = "#>", `.sql` = "-->
     file_extension <- gsub("^.*(\\..*$)", "\\1", file)
     if (tolower(file_extension) %in% tolower(accepted_fileformats)) {
       token_for_file_type <- fileformat[[which(tolower(accepted_fileformats) %in% tolower(file_extension))]]
-      lines <- read_files(file)
+      lines <- readLines(file)
       tokens <- tokenize(lines, token_for_file_type)
       if (length(tokens) != 0) {
         parsed_values[[file]] <- tokens
