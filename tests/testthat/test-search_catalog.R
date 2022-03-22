@@ -2,25 +2,31 @@ catalog <- list(
   filepath1 = list(
     list(
       label = "features",
-      values = c("col1", "col2", "col3")
+      value = c("col1", "col2", "col3")
     ),
     list(
-      label = "desciption",
-      values = c("This is a datapull of col1, col2, and col3 across x tables in the y database")
+      label = "description",
+      value = c("This is a datapull of col1, col2, and col3 across x tables in the y database")
     ),
     list(
       label = "countries",
-      values = c("India", "Sri Lanka", "Indonesia")
+      value = c("India", "Sri Lanka", "Indonesia")
     )
   ),
   filepath2 = list(
     list(
       label = "authors",
-      values = c("Akash", "Sam", "John Doe")
+      value = c("Akash", "Sam", "John Doe")
     ),
     list(
       label = "countries",
-      values = c("USA")
+      value = c("USA")
+    )
+  ),
+  filepath3 = list(
+    list(
+      label = "description",
+      value = c("This is a datapull for John Does, and contains the yearly summary from databases x and y")
     )
   )
 )
@@ -32,13 +38,13 @@ test_that("find_label",{
       filepath1 = list(
         list(
           label = "countries",
-          values = c("India", "Sri Lanka", "Indonesia")
+          value = c("India", "Sri Lanka", "Indonesia")
         )
       ),
       filepath2 = list(
         list(
           label = "countries",
-          values = c("USA")
+          value = c("USA")
         )
       )
     )
@@ -50,7 +56,7 @@ test_that("find_label",{
       filepath2 = list(
         list(
           label = "authors",
-          values = c("Akash", "Sam", "John Doe")
+          value = c("Akash", "Sam", "John Doe")
           )
         )
       )
