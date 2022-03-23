@@ -22,16 +22,18 @@ find_label <- function(catalog, label_str){
 }
 
 find_value <- function(catalog, value){
-
-  flat_catalog <- rlist::list.flatten(catalog)
+  # Further unlist it to remove nested vectors
+  # We need a list with only values, no other data structures nested.
+  # This is required for the similarity calculation
+  if(length(catalog) == 0) return(NULL)
+  flat_catalog <- unlist(rlist::list.flatten(catalog))
   flat_catalog_values <- rlist::list.match(flat_catalog, "value")
-  value_filenames <- gsub("\\.value$", "", names(flat_catalog_values))
-  names(flat_catalog_values) <- value_filenames
+
+  value_filenames <- gsub("\\.value\\d*$", "", names(flat_catalog_values))
+
   similarity <- stringdist::stringsim(tolower(flat_catalog_values),tolower(value))
 
   similarity_df <- aggregate(similarity, by = list(filenames = value_filenames), FUN = sum)
-
   top_filenames <- similarity_df[order(similarity_df$x, decreasing = TRUE),]$filenames
-
   return(top_filenames)
 }

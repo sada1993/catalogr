@@ -63,3 +63,33 @@ test_that("find_label",{
   )
 
 })
+
+
+test_that("find_value",{
+  expect_equal(
+    find_value(catalog, "Akash")[1],
+    "filepath2"
+  )
+
+  expect_equal(
+    find_value(catalog, "india")[1],
+    "filepath1"
+  )
+})
+
+test_that("search_catalog",{
+  expect_null(search_catalog(catalog, search_value = "countries", label = "India")) #NULL because
+  expect_equal(
+    search_catalog(catalog, search_value = "India", label = "countries"),
+    c("filepath1", "filepath2")
+  )
+  expect_equal(
+    search_catalog(catalog, search_value = "India"),
+    c("filepath1", "filepath2", "filepath3")
+  )
+  expect_equal(
+    search_catalog(catalog, "John Doe", "description"),
+    c("filepath3", "filepath1")
+  )
+
+})
