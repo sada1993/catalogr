@@ -1,8 +1,8 @@
 #' @title Search Catalog
 #' @description Search the catalog and return a filename.
 #' @param catalog A list retured by read_catalog
-#' @param label A string indicating the label we wish to search
-#' @param  search_valye a search string
+#' @param  search_value a search string
+#' @param label A string indicating the label we wish to search. If NULL it matches all labels.
 #' @return a list of matched filenames
 #' @export
 search_catalog <- function(catalog, search_value, label = NULL){
