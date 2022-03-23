@@ -31,7 +31,7 @@ catalog <- list(
   )
 )
 
-test_that("find_label",{
+test_that("find_label", {
   expect_equal(
     find_label(catalog, "countries"),
     list(
@@ -57,15 +57,14 @@ test_that("find_label",{
         list(
           label = "authors",
           value = c("Akash", "Sam", "John Doe")
-          )
         )
       )
+    )
   )
-
 })
 
 
-test_that("find_value",{
+test_that("find_value", {
   expect_equal(
     find_value(catalog, "Akash")[1],
     "filepath2"
@@ -77,8 +76,8 @@ test_that("find_value",{
   )
 })
 
-test_that("search_catalog",{
-  expect_null(search_catalog(catalog, search_value = "countries", label = "India")) #NULL because
+test_that("search_catalog", {
+  expect_null(search_catalog(catalog, search_value = "countries", label = "India")) # NULL because
   expect_equal(
     search_catalog(catalog, search_value = "India", label = "countries"),
     c("filepath1", "filepath2")
@@ -91,5 +90,9 @@ test_that("search_catalog",{
     search_catalog(catalog, "John Doe", "description"),
     c("filepath3", "filepath1")
   )
+})
 
+test_that("get_labels", {
+  expect_equal(get_labels(catalog), c("authors", "countries", "description", "features"))
+  expect_null(get_labels(list()))
 })
