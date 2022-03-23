@@ -4,7 +4,7 @@
 \alias{read_catalog}
 \title{Read a Catalog}
 \usage{
-read_catalog(yaml_filepath = getwd())
+read_catalog(yaml_filepath = file.path(getwd(), "catalogr.yaml"))
 }
 \arguments{
 \item{yaml_filepath}{the filepath of the saved catalog file}
