@@ -2,6 +2,7 @@
 
 export(catalogr)
 export(get_labels)
+export(get_values)
 export(read_catalog)
 export(search_catalog)
 export(search_label)
