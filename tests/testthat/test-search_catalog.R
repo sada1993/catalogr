@@ -31,9 +31,9 @@ catalog <- list(
   )
 )
 
-test_that("find_label", {
+test_that("search_label", {
   expect_equal(
-    find_label(catalog, "countries"),
+    search_label(catalog, "countries"),
     list(
       filepath1 = list(
         list(
@@ -51,7 +51,7 @@ test_that("find_label", {
   )
 
   expect_equal(
-    find_label(catalog, "authors"),
+    search_label(catalog, "authors"),
     list(
       filepath2 = list(
         list(
